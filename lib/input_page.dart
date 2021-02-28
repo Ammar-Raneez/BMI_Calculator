@@ -113,20 +113,30 @@ class _InputPageState extends State<InputPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              RoundIconButton(FontAwesomeIcons.minus),
+                              RoundIconButton(
+                                FontAwesomeIcons.minus,
+                                () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                }
+                              ),
                               SizedBox(
                                 width: 10.0,
                               ),
-                              RoundIconButton(FontAwesomeIcons.plus),
+                              RoundIconButton(
+                                FontAwesomeIcons.plus,
+                                () {
+                                  setState(() {
+                                  weight++;
+                                  });
+                                }
+                              ),
                             ],
                           )
                         ],
                       ),
-                      onPress: () {
-                        setState(() {
-                          selectedGender = Gender.male;
-                        });
-                      }),
+                    ),
                 ),
                 Expanded(
                   child: ReusableCard(
@@ -166,8 +176,9 @@ class _InputPageState extends State<InputPage> {
 
 class RoundIconButton extends StatelessWidget {
   final IconData icon;
+  final Function onPressed;
 
-  RoundIconButton(this.icon);
+  RoundIconButton(this.icon, this.onPressed);
 
   @override
   Widget build(BuildContext context) {
@@ -180,9 +191,7 @@ class RoundIconButton extends StatelessWidget {
         height: 56.0,
       ),
       elevation: 6.0,
-      onPressed: () {
-
-      },
+      onPressed: onPressed
     );
   }
 }
