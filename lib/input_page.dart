@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+const Color cardColor = Color(0xff1de33);
+const Color footerColor = Color(0xffeb1555);
+const double footerHeight = 80.0;
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -22,12 +26,12 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    Color(0xFF1D1E33),
+                    cardColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    Color(0xFF1D1E33),
+                    cardColor,
                   ),
                 ),
               ],
@@ -35,7 +39,7 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              Color(0xFF1D1E33),
+              cardColor,
             ),
           ),
           Expanded(
@@ -43,17 +47,23 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    Color(0xFF1D1E33),
+                    cardColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    Color(0xFF1D1E33),
+                    cardColor,
                   ),
                 ),
               ],
             ),
           ),
+          Container(
+            color: footerColor,
+            margin: EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: footerHeight,
+          )
         ],
       ),
     );
@@ -61,6 +71,7 @@ class _InputPageState extends State<InputPage> {
 }
 
 class ReusableCard extends StatelessWidget {
+  //only one assignment
   final Color color;
 
   ReusableCard(this.color);
