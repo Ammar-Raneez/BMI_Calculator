@@ -10,6 +10,15 @@ class BMICalculator extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xff0a0e21),
         scaffoldBackgroundColor: Color(0xff0a0e21),
+        sliderTheme: SliderTheme.of(context).copyWith(
+          thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+          overlayShape: RoundSliderOverlayShape(overlayRadius: 13.0),
+          thumbColor: Color(0xffeb1555),
+          activeTrackColor: Colors.white,
+          overlayColor: Color(0x29eb1555),
+          inactiveTrackColor: Color(0xff8d8e98),
+          trackHeight: 0.5,
+        ),
       ),
       home: InputPage(),
     );
