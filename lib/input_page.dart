@@ -30,71 +30,69 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.male
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
-                    cardContent: IconContent("MALE", FontAwesomeIcons.mars),
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    }
-                  ),
+                      color: selectedGender == Gender.male
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      cardContent: IconContent("MALE", FontAwesomeIcons.mars),
+                      onPress: () {
+                        setState(() {
+                          selectedGender = Gender.male;
+                        });
+                      }),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.female
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
-                    cardContent: IconContent("FEMALE", FontAwesomeIcons.mars),
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.female;
-                      });
-                    }
-                  ),
+                      color: selectedGender == Gender.female
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      cardContent: IconContent("FEMALE", FontAwesomeIcons.mars),
+                      onPress: () {
+                        setState(() {
+                          selectedGender = Gender.female;
+                        });
+                      }),
                 ),
               ],
             ),
           ),
           Expanded(
             child: ReusableCard(
-                color: selectedGender == Gender.male
-                    ? kActiveCardColor
-                    : kInactiveCardColor,
-                cardContent: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'HEIGHT',
-                      style: kLabelTextStyle,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      children: <Widget>[
-                        Text(
-                          height.toString(),
-                          style: kNumberTextStyle,
-                        ),
-                        Text(
-                          'cm',
-                          style: kLabelTextStyle,
-                        ),
-                      ],
-                    ),
-                    Slider(
-                      value: height.toDouble(),
-                      min: 120.0,
-                      max: 220.0,
-                      onChanged: (double newHeight) {
-                        setState(() {
-                          height = newHeight.round();
-                        });
-                      },
-                    ),
-                  ],
-                ),
+              color: selectedGender == Gender.male
+                  ? kActiveCardColor
+                  : kInactiveCardColor,
+              cardContent: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    children: <Widget>[
+                      Text(
+                        height.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    min: 120.0,
+                    max: 220.0,
+                    onChanged: (double newHeight) {
+                      setState(() {
+                        height = newHeight.round();
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -102,38 +100,45 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.male
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
-                    cardContent: IconContent("MALE", FontAwesomeIcons.mars),
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    }
-                  ),
+                      color: selectedGender == Gender.male
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      cardContent: IconContent("MALE", FontAwesomeIcons.mars),
+                      onPress: () {
+                        setState(() {
+                          selectedGender = Gender.male;
+                        });
+                      }),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.male
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
-                    cardContent: IconContent("MALE", FontAwesomeIcons.mars),
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    }
-                  ),
+                      color: selectedGender == Gender.male
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      cardContent: IconContent("MALE", FontAwesomeIcons.mars),
+                      onPress: () {
+                        setState(() {
+                          selectedGender = Gender.male;
+                        });
+                      }),
                 ),
               ],
             ),
           ),
-          Container(
-            color: kFooterColor,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: kFooterHeight,
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, "/results"),
+            child: Container(
+              child: Center(
+                child: Text(
+                  'CALCULATE',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+              color: kFooterColor,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: kFooterHeight,
+            ),
           )
         ],
       ),
