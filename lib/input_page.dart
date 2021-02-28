@@ -12,6 +12,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,7 @@ class _InputPageState extends State<InputPage> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Row(
@@ -31,7 +33,7 @@ class _InputPageState extends State<InputPage> {
                     color: selectedGender == Gender.male
                         ? kActiveCardColor
                         : kInactiveCardColor,
-                    iconContent: IconContent("MALE", FontAwesomeIcons.mars),
+                    cardContent: IconContent("MALE", FontAwesomeIcons.mars),
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.male;
@@ -44,7 +46,7 @@ class _InputPageState extends State<InputPage> {
                     color: selectedGender == Gender.female
                         ? kActiveCardColor
                         : kInactiveCardColor,
-                    iconContent: IconContent("FEMALE", FontAwesomeIcons.mars),
+                    cardContent: IconContent("FEMALE", FontAwesomeIcons.mars),
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.female;
@@ -60,12 +62,41 @@ class _InputPageState extends State<InputPage> {
                 color: selectedGender == Gender.male
                     ? kActiveCardColor
                     : kInactiveCardColor,
-                iconContent: IconContent("MALE", FontAwesomeIcons.mars),
-                onPress: () {
-                  setState(() {
-                    selectedGender = Gender.male;
-                  });
-                }
+                cardContent: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'HEIGHT',
+                      style: kLabelTextStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      children: <Widget>[
+                        Text(
+                          height.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Text(
+                          'cm',
+                          style: kLabelTextStyle,
+                        ),
+                      ],
+                    ),
+                    Slider(
+                      activeColor: Color(0xffeb1555),
+                      inactiveColor: Color(0xff8d8e98),
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                      onChanged: (double newHeight) {
+                        setState(() {
+                          height = newHeight.round();
+                        });
+                      },
+                    ),
+                  ],
+                ),
             ),
           ),
           Expanded(
@@ -76,7 +107,7 @@ class _InputPageState extends State<InputPage> {
                     color: selectedGender == Gender.male
                         ? kActiveCardColor
                         : kInactiveCardColor,
-                    iconContent: IconContent("MALE", FontAwesomeIcons.mars),
+                    cardContent: IconContent("MALE", FontAwesomeIcons.mars),
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.male;
@@ -89,7 +120,7 @@ class _InputPageState extends State<InputPage> {
                     color: selectedGender == Gender.male
                         ? kActiveCardColor
                         : kInactiveCardColor,
-                    iconContent: IconContent("MALE", FontAwesomeIcons.mars),
+                    cardContent: IconContent("MALE", FontAwesomeIcons.mars),
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.male;
