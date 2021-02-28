@@ -17,6 +17,63 @@ class _InputPageState extends State<InputPage> {
   int weight = 60;
   int age = 20;
 
+  Expanded genderCard(Gender gender, IconData icon, String genderText) {
+    return Expanded(
+      child: ReusableCard(
+          color: selectedGender == gender
+              ? kActiveCardColor
+              : kInactiveCardColor,
+          cardContent: IconContent(genderText, icon),
+          onPress: () {
+            setState(() {
+              selectedGender = gender;
+            });
+          }),
+    );
+  }
+
+  Expanded weightAgeCard(String label, int val) {
+    return Expanded(
+      child: ReusableCard(
+        cardContent: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              label,
+              style: kLabelTextStyle,
+            ),
+            Text(
+              val.toString(),
+              style: kNumberTextStyle,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RoundIconButton(
+                    icon: FontAwesomeIcons.minus,
+                    onPressed: () {
+                      setState(() {
+                        val--;
+                      });
+                    }),
+                SizedBox(
+                  width: 10.0,
+                ),
+                RoundIconButton(
+                    icon: FontAwesomeIcons.plus,
+                    onPressed: () {
+                      setState(() {
+                        val++;
+                      });
+                    }),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,30 +88,8 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(
-                  child: ReusableCard(
-                      color: selectedGender == Gender.male
-                          ? kActiveCardColor
-                          : kInactiveCardColor,
-                      cardContent: IconContent("MALE", FontAwesomeIcons.mars),
-                      onPress: () {
-                        setState(() {
-                          selectedGender = Gender.male;
-                        });
-                      }),
-                ),
-                Expanded(
-                  child: ReusableCard(
-                      color: selectedGender == Gender.female
-                          ? kActiveCardColor
-                          : kInactiveCardColor,
-                      cardContent: IconContent("FEMALE", FontAwesomeIcons.mars),
-                      onPress: () {
-                        setState(() {
-                          selectedGender = Gender.female;
-                        });
-                      }),
-                ),
+                genderCard(Gender.male, FontAwesomeIcons.mars, "MALE"),
+                genderCard(Gender.female, FontAwesomeIcons.venus, "FEMALE"),
               ],
             ),
           ),
@@ -98,84 +133,8 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(
-                  child: ReusableCard(
-                    cardContent: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "WEIGHT",
-                          style: kLabelTextStyle,
-                        ),
-                        Text(
-                          weight.toString(),
-                          style: kNumberTextStyle,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RoundIconButton(
-                                icon: FontAwesomeIcons.minus,
-                                onPressed: () {
-                                  setState(() {
-                                    weight--;
-                                  });
-                                }),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            RoundIconButton(
-                                icon: FontAwesomeIcons.plus,
-                                onPressed: () {
-                                  setState(() {
-                                    weight++;
-                                  });
-                                }),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: ReusableCard(
-                    cardContent: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "AGE",
-                          style: kLabelTextStyle,
-                        ),
-                        Text(
-                          age.toString(),
-                          style: kNumberTextStyle,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RoundIconButton(
-                                icon: FontAwesomeIcons.minus,
-                                onPressed: () {
-                                  setState(() {
-                                    age--;
-                                  });
-                                }),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            RoundIconButton(
-                                icon: FontAwesomeIcons.plus,
-                                onPressed: () {
-                                  setState(() {
-                                    age++;
-                                  });
-                                }),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                weightAgeCard("WEIGHT", weight),
+                weightAgeCard("AGE", age),
               ],
             ),
           ),
