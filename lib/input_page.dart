@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/bottom_button.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/reusable_card.dart';
@@ -138,21 +139,10 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
+          BottomButton(
             onTap: () => Navigator.pushNamed(context, "/results"),
-            child: Container(
-              child: Center(
-                child: Text(
-                  'CALCULATE',
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
-              color: kFooterColor,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kFooterHeight,
-            ),
-          )
+            buttonTitle: 'CALCULATE',
+          ),
         ],
       ),
     );
