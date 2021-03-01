@@ -1,6 +1,9 @@
 import 'package:bmi_calculator/bottom_button.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/icon_content.dart';
+import 'package:bmi_calculator/results_page.dart';
+import 'package:bmi_calculator/results_page_args.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:bmi_calculator/round_icon_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -54,7 +57,8 @@ class _InputPageState extends State<InputPage> {
                     icon: FontAwesomeIcons.minus,
                     onPressed: () {
                       setState(() {
-                        val--;
+                        if (val == weight) weight --;
+                        else age--;
                       });
                     }),
                 SizedBox(
@@ -64,7 +68,8 @@ class _InputPageState extends State<InputPage> {
                     icon: FontAwesomeIcons.plus,
                     onPressed: () {
                       setState(() {
-                        val++;
+                        if (val == weight) weight++;
+                        else age++;
                       });
                     }),
               ],
@@ -140,7 +145,18 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           BottomButton(
-            onTap: () => Navigator.pushNamed(context, "/results"),
+            onTap: () {
+              CalculatorBrain calculatorBrain = new CalculatorBrain(height: height, weight: weight);
+              Navigator.pushNamed(
+                context,
+                ResultsPage.routeName,
+                arguments: ResultsPageArgs(
+                  bmi: calculatorBrain.calculateBMI(),
+                  result: calculatorBrain.getResult(),
+                  interpretation: calculatorBrain.getInterpretation()
+                ),
+              );
+            },
             buttonTitle: 'CALCULATE',
           ),
         ],
